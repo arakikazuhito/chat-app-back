@@ -13,11 +13,12 @@ use App\Http\Controllers\ChatController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
+Route::get('/', [ChatController::class, 'index']);
 Route::get('/chat', [ChatController::class, 'show']);
 Route::post('/chat', [ChatController::class, 'submit']);
 Route::get('/get-csrf-token', function () {

@@ -7,7 +7,7 @@ use App\Models\Chat;
 
 class ChatController extends Controller
 {
-    public function show()
+    public function index()
     {
         $htmlContent = file_get_contents('/var/www/resources/views/test.html');
         return response($htmlContent)->header('Content-Type', 'text/html');
@@ -26,7 +26,7 @@ class ChatController extends Controller
         return response()->json(['text' => $text]);
     }
 
-    public function chat()
+    public function show()
     {
         return Chat::all();
     }
