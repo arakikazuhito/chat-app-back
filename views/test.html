@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chat</title>
+    <meta name="csrf-token" content="">
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
@@ -12,12 +13,41 @@
     </div>
     <div></div>
     <div class="submit-area">
-        <form method="post" action="/chat/submit">
-            <textarea></textarea>
-            <button type="submit" class="btn">送信</button>
+        <form method="post" action="/chat" id="chatForm">
+            <textarea name="text"></textarea>
+            <button type="submit" class="btn" name="btn">送信</button>
         </form>
     </div>
 
 
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // CSRFトークンを取得する
+        fetch('/get-csrf-token')
+            .then(response => response.json())
+            .then(data => {
+                const csrfToken = data.csrf_token;
+                document.querySelector('meta[name="csrf-token"]').setAttribute('content', csrfToken);
+
+                // フォームの取得
+                const form = document.getElementById('chatForm');
+                if (form) {
+                    form.addEventListener('submit', function(event) {
+                        // フォームにCSRFトークンを追加
+                        let input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = '_token';
+                        input.value = csrfToken;
+                        form.appendChild(input);
+                    });
+                } else {
+                    console.error('Form element not found');
+                }
+            })
+            .catch(error => console.error('Error fetching CSRF token:', error));
+    });
+</script>
+
 </html>
