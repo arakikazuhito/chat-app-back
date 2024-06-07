@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #898989;
+}
+.submit-area {
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid #898989;
+    position: fixed;
+    bottom: 0; 
+    display: flex;
+    gap: 20px;
+}
+.submit-area textarea {
+    width: 100%;
+}
+.btn {
+    background:#57f484;
+    border-radius:8px;
+}
