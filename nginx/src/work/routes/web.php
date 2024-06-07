@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/chat', [ChatController::class, 'show']);
+Route::post('/chat', [ChatController::class, 'submit']);
+Route::get('/get-csrf-token', function () {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
