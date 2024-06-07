@@ -1,65 +1,54 @@
 -- ユーザー情報
 -- * BackupToTempTable
-drop table if exists "users" cascade;
 
 -- * RestoreFromTempTable
 create table "users" (
-  "id" serial not null
-  , "user_id" integer not null
-  , "name" character varying(100) not null
-  , "password" character varying(100) not null
-  , "created_at" timestamp without time zone not null
-  , "updated_at" timestamp without time zone not null
-  , "deleted_at" timestamp
-  , constraint "reviews_PKC" primary key ("id","user_id","shop_id")
+  "id" int AUTO_INCREMENT primary key
+  , "user_id" int not null
+  , "name" varchar(100) not null
+  , "password" varchar(100) not null
+  , "created_at" datetime
+  , "updated_at" datetime
+  , "deleted_at" datetime
 ) ;
-
-create unique index "chat"
-  on "reviews"("id");
 
 -- チャット情報
 -- * BackupToTempTable
-drop table if exists "chat" cascade;
 
 -- * RestoreFromTempTable
 create table "chat" (
-  "id" serial not null
-  , "user_id" numeric(10) not null
-  , "send_user_id" numeric(10) not null
-  , "comment" character varying(100) not null
-  , "created_at" timestamp without time zone
-  , "updated_at" timestamp without time zone
-  , constraint "shops_PKC" primary key ("id")
+  "id" int AUTO_INCREMENT primary key
+  , "user_id" int not null
+  , "send_user_id" int not null
+  , "comment" varchar(100) not null
+  , "created_at" datetime
+  , "updated_at" datetime
 ) ;
 
 
 -- NGワード登録
 -- * BackupToTempTable
-drop table if exists "ngWords" cascade;
 
 -- * RestoreFromTempTable
 create table "ngWords" (
-  "user_id" numeric(10) not null
-  , "ng_comment1" character varying(100) not null
-  , "ng_comment2" character varying(100) not null
-  , "ng_comment3" character varying(100) not null
-  , "created_at" timestamp without time zone
-  , "updated_at" timestamp without time zone
-  , constraint "shops_PKC" primary key ("id")
+  "user_id" int not null
+  , "ng_comment1" varchar(100) not null
+  , "ng_comment2" varchar(100) not null
+  , "ng_comment3" varchar(100) not null
+  , "created_at" datetime
+  , "updated_at" datetime
 ) ;
 
 
 -- NGワード履歴
 -- * BackupToTempTable
-drop table if exists "ngWordLogs" cascade;
 
 -- * RestoreFromTempTable
 create table "ngWordLogs" (
-  "id" serial not null
-  , "user_id" numeric(10) not null
-  , "send_user_id" numeric(10) not null
-  , "ng_comment" character varying(100) not null
-  , "created_at" timestamp without time zone
-  , "updated_at" timestamp without time zone
-  , constraint "shops_PKC" primary key ("id")
+  "id" int AUTO_INCREMENT primary key
+  , "user_id" int not null
+  , "send_user_id" int not null
+  , "ng_comment" varchar(100) not null
+  , "created_at" datetime
+  , "updated_at" datetime
 ) ;
